@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SkyCast - Advanced Weather Intelligence Dashboard">
+  <title>SkyCast — Weather Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="SkyCast home">
+        <span class="brand-mark">☁</span><span>Sky<span>Cast</span></span>
+      </a>
+
+      <form class="search-form" id="searchForm" role="search">
+        <label class="sr-only" for="citySearch">Search city</label>
+        <span class="search-icon">⌕</span>
+        <input id="citySearch" type="search" autocomplete="off" placeholder="Search city..." aria-controls="suggestions">
+        <button class="clear-search" id="clearSearch" type="button" aria-label="Clear search">×</button>
+        <button class="search-button" type="submit">Search</button>
+        <div id="suggestions" class="suggestions" hidden></div>
+      </form>
+
+      <div class="header-actions">
+        <button class="icon-btn" id="locationBtn" type="button" title="Use my location" aria-label="Use my location">⌖</button>
+        <button class="icon-btn" id="favoriteBtn" type="button" title="Favorite current city" aria-label="Favorite current city">☆</button>
+        <button class="icon-btn" id="unitBtn" type="button" title="Switch temperature unit" aria-label="Switch temperature unit">°C</button>
+        <button class="icon-btn" id="themeBtn" type="button" title="Toggle theme" aria-label="Toggle theme">☾</button>
+      </div>
+    </header>
+
+    <main class="dashboard">
+      <div id="globalStatus" class="status-banner" role="status" hidden></div>
+
+      <section class="hero-grid">
+        <article class="current-card card" id="currentCard">
+          <div class="card-glow"></div>
+          <div class="current-top">
+            <div>
+              <p class="eyebrow">CURRENT WEATHER</p>
+              <h1 id="locationName">Loading...</h1>
+              <p id="currentDate" class="muted">—</p>
+            </div>
+            <button class="share-btn" id="shareBtn" type="button">↗ Share</button>
+          </div>
+          <div class="current-main">
+            <div class="weather-icon-xl" id="currentIcon">☁</div>
+            <div>
+              <div class="temperature-xl" id="currentTemp">--°</div>
+              <div class="condition" id="currentCondition">Loading weather...</div>
+              <div class="muted" id="feelsLike">Feels like --°</div>
+            </div>
+          </div>
+          <div class="minmax">
+            <span>↓ <b id="minTemp">--°</b> Low</span>
+            <span>↑ <b id="maxTemp">--°</b> High</span>
+            <span>Updated <b id="updatedTime">--</b></span>
+          </div>
+        </article>
+
+        <section class="details-grid" aria-label="Weather details">
+          <article class="metric card"><span class="metric-icon">💧</span><div><strong id="humidity">--%</strong><span>Humidity</span></div></article>
+          <article class="metric card"><span class="metric-icon">💨</span><div><strong id="wind">--</strong><span>Wind Speed</span></div></article>
+          <article class="metric card"><span class="metric-icon">◉</span><div><strong id="pressure">-- hPa</strong><span>Pressure</span></div></article>
+          <article class="metric card"><span class="metric-icon">◌</span><div><strong id="visibility">-- km</strong><span>Visibility</span></div></article>
+          <article class="metric card"><span class="metric-icon">☀</span><div><strong id="uv">--</strong><span>UV Index</span></div></article>
+          <article class="metric card"><span class="metric-icon">☁</span><div><strong id="cloud">--%</strong><span>Cloud Cover</span></div></article>
+        </section>
+      </section>
+
+      <section class="section card">
+        <div class="section-head"><div><p class="eyebrow">NEXT HOURS</p><h2>Hourly Forecast</h2></div><span class="scroll-hint">Scroll →</span></div>
+        <div id="hourlyForecast" class="hourly-row" aria-label="Hourly forecast"></div>
+      </section>
+
+      <section class="two-col">
+        <article class="card section">
+          <div class="section-head"><div><p class="eyebrow">OUTLOOK</p><h2>7-Day Forecast</h2></div></div>
+          <div id="dailyForecast" class="daily-list"></div>
+        </article>
+        <article class="card section">
+          <div class="section-head"><div><p class="eyebrow">PRECIPITATION</p><h2>Rain Probability</h2></div></div>
+          <div id="precipitation" class="precip-list"></div>
+        </article>
+      </section>
+
+      <section class="two-col">
+        <article class="card section chart-card">
+          <div class="section-head"><div><p class="eyebrow">TREND</p><h2>Temperature</h2></div><span class="muted">Next 24 hours</span></div>
+          <div class="chart-wrap"><canvas id="tempChart" aria-label="Temperature trend chart"></canvas></div>
+        </article>
+        <article class="card section">
+          <div class="section-head"><div><p class="eyebrow">HEALTH</p><h2>Air Quality</h2></div></div>
+          <div id="airQuality" class="air-quality"></div>
+        </article>
+      </section>
+
+      <section class="two-col">
+        <article class="card section">
+          <div class="section-head"><div><p class="eyebrow">DAYLIGHT</p><h2>Sunrise & Sunset</h2></div></div>
+          <div class="sun-times">
+            <div><span class="sun-symbol">🌅</span><div><strong id="sunrise">--</strong><span>Sunrise</span></div></div>
+            <div><span class="sun-symbol">🌇</span><div><strong id="sunset">--</strong><span>Sunset</span></div></div>
+          </div>
+          <div class="daylight-track"><span id="daylightProgress"></span></div>
+          <div class="daylight-meta"><span id="daylightDuration">Daylight --</span><span id="daylightStatus">--</span></div>
+        </article>
+        <article class="card section">
+          <div class="section-head"><div><p class="eyebrow">ALERTS</p><h2>Weather Alerts</h2></div></div>
+          <div id="alerts" class="alert-box"></div>
+        </article>
+      </section>
+
+      <section class="two-col">
+        <article class="card section">
+          <div class="section-head"><div><p class="eyebrow">PERSONAL</p><h2>Favorite Cities</h2></div></div>
+          <div id="favorites" class="city-list"></div>
+        </article>
+        <article class="card section">
+          <div class="section-head"><div><p class="eyebrow">HISTORY</p><h2>Recent Searches</h2></div><button id="clearHistory" class="text-btn" type="button">Clear all</button></div>
+          <div id="recentSearches" class="city-list"></div>
+        </article>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>SkyCast • Weather intelligence dashboard</span>
+      <span>Data: Open-Meteo & OpenStreetMap Nominatim</span>
+    </footer>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

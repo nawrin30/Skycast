@@ -1,0 +1,38 @@
+@media (max-width: 1050px) {
+  .topbar { grid-template-columns:170px 1fr auto; gap:12px; }
+  .hero-grid { grid-template-columns:1fr; }
+  .details-grid { grid-template-columns:repeat(3,1fr); }
+}
+@media (max-width: 760px) {
+  .topbar { position:relative; grid-template-columns:1fr auto; padding:14px; }
+  .brand { grid-column:1; }
+  .header-actions { grid-column:2; }
+  .search-form { grid-column:1/-1; grid-row:2; max-width:none; }
+  .header-actions .icon-btn:nth-child(2) { display:none; }
+  .dashboard { padding:18px 14px 35px; }
+  .current-card { padding:21px; min-height:auto; }
+  .details-grid { grid-template-columns:repeat(2,1fr); gap:10px; }
+  .metric { padding:14px; }
+  .two-col { grid-template-columns:1fr; gap:0; }
+  .section { padding:17px; margin-top:14px; }
+  .temperature-xl { font-size:55px; }
+  .weather-icon-xl { width:82px; height:82px; font-size:45px; }
+  .current-main { gap:13px; margin:22px 0; }
+  .minmax { justify-content:flex-start; }
+  .daily-item { grid-template-columns:1fr .5fr 1fr .8fr; }
+  .footer { flex-direction:column; padding:0 14px 25px; }
+}
+@media (max-width: 430px) {
+  .header-actions { gap:4px; }
+  .icon-btn { width:38px; height:38px; }
+  .current-top { align-items:flex-start; }
+  h1 { font-size:22px; }
+  .share-btn { padding:8px; font-size:12px; }
+  .details-grid { grid-template-columns:1fr 1fr; }
+  .metric-icon { width:34px; height:34px; }
+  .metric strong { font-size:15px; }
+  .daily-item { font-size:12px; padding:9px 5px; }
+  .daily-icon { font-size:20px; }
+  .sun-times { grid-template-columns:1fr; }
+  .chart-wrap { height:210px; }
+}

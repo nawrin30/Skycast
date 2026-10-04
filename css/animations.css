@@ -1,0 +1,11 @@
+* { transition: background-color .22s ease, border-color .22s ease, color .22s ease; }
+button, .city-item, .hour-card, .metric { transition: transform .18s ease, box-shadow .18s ease, background-color .22s ease, border-color .22s ease; }
+button:hover { transform: translateY(-1px); }
+.card { animation: rise .45s ease both; }
+@keyframes rise { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+.skeleton { background:linear-gradient(90deg,var(--line),var(--surface-solid),var(--line)); background-size:200% 100%; animation: shimmer 1.3s infinite; }
+@keyframes shimmer { to { background-position:-200% 0; } }
+
+/* Fast first paint: dashboard content should never wait for decorative motion. */
+.app-shell { animation: none !important; }
+.card { animation-delay: 0s !important; }
