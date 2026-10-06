@@ -131,21 +131,9 @@ skycast_unit
 
 This is a static frontend and can be deployed to:
 
-- GitHub Pages
-- Netlify
-- Vercel static hosting
-- Cloudflare Pages
-
-For GitHub Pages, keep the relative folder structure unchanged.
-
-## 📱 Screenshots
-
-Add screenshots here after deployment:
-
-```text
-![SkyCast Desktop](assets/images/screenshot-desktop.png)
-![SkyCast Mobile](assets/images/screenshot-mobile.png)
-```
+- GitHub Repository Link: https://github.com/nawrin30/Skycast
+- Live Demo Link:  https://nawrin30.github.io/Skycast/
+- Netlify link :https://skycast30.netlify.app
 
 ## 🧪 Testing Checklist
 
